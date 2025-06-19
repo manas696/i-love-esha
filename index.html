@@ -1,61 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>I Love You Eshaa 💖</title>
+  <meta charset="UTF-8" />
+  <title>I Love You Eshaa ❤️</title>
   <style>
     body {
-      background: #0f0c29;  /* purple gradient */
-      background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-      color: white;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      margin: 0;
+      padding: 0;
       height: 100vh;
+      background: linear-gradient(to right, #2c3e50, #fd746c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      color: white;
       text-align: center;
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      border-right: 0.15em solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.8s infinite;
     }
 
-    button {
-      background: #ff0080;
-      border: none;
-      padding: 10px 20px;
-      color: white;
-      font-size: 1.2em;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 20px;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
 
-    #message {
-      margin-top: 30px;
-      font-size: 1.5em;
-      display: none;
+    @keyframes blink {
+      0%, 100% { border-color: transparent }
+      50% { border-color: white }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: 0;
+        opacity: 1;
+        transform: rotate(45deg) translateX(0);
+      }
+      100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: rotate(45deg) translateX(100px);
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>I Love You, Eshaa 💖</h1>
-  <p>You’re the code to my compiler, the spark to my circuit.</p>
+  <h1>I Love You Eshaa ❤️</h1>
 
-  <button onclick="showMessage()">Click Me 😳</button>
-
-  <div id="message">
-    <p>"Even quantum physics can't explain how I fell for you, but I did." 💫</p>
-    <p>— Yours, Manas 🧠</p>
-  </div>
-
+  <!-- Floating Hearts -->
   <script>
-    function showMessage() {
-      document.getElementById('message').style.display = 'block';
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
     }
+    setInterval(createHeart, 300);
   </script>
 
 </body>
