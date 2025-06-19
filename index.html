@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>I Love You Esha ❤️</title>
   <style>
@@ -14,9 +15,16 @@
       text-align: center;
     }
 
-    h1 {
+    .greeting {
+      opacity: 0;
       margin-top: 20vh;
       font-size: 2.5rem;
+      animation: fadeIn 3s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .heart {
@@ -25,16 +33,18 @@
       height: 30px;
       background-image: url('https://i.imgur.com/YM8Y6pu.png');
       background-size: cover;
-      animation: fall 6s linear infinite;
+      animation: fall 6s linear infinite ease-in;
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-      }
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    @keyframes float {
+      0% { transform: scale(0.9); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(0.9); }
     }
 
     #playBtn {
@@ -46,50 +56,44 @@
       background-color: #ff5e78;
       color: white;
       cursor: pointer;
+      animation: float 3s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
 
-  <h1>I love you Esha, forever and always</h1>
+  <div class="greeting">I love you Esha, forever and always ❤️</div>
   <button id="playBtn">💖 Play Our Song</button>
 
-  <!-- Background Music -->
   <audio id="bgMusic" loop>
-    <source src="https://archive.org/download/love-me-like-you-do-from-fifty-shades-of-grey-128k/love-me-like-you-do-from-fifty-shades-of-grey-128k.mp3" type="audio/mp3">
+    <source src="https://archive.org/download/romantic_guitar_track/romantic_guitar.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    // Pop-up Message
-    window.onload = function () {
-      setTimeout(() => {
-        alert("Will you always be mine, Esha? 💍");
-      }, 1000);
+    // Greeting animation triggered on load
+    window.onload = function() {
+      document.querySelector('.greeting').style.opacity = 1;
     };
 
-    // Falling Hearts
+    // Falling hearts
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
+      setTimeout(() => heart.remove(), 7000);
     }
+    setInterval(createHeart, 400);
 
-    setInterval(createHeart, 300);
-
-    // Music Button
+    // Music button
     const music = document.getElementById("bgMusic");
-    const playBtn = document.getElementById("playBtn");
-
-    playBtn.addEventListener("click", () => {
+    document.getElementById("playBtn").addEventListener("click", () => {
       music.play();
-      playBtn.style.display = "none"; // hide button after click
+      document.getElementById("playBtn").style.display = "none";
     });
   </script>
 
 </body>
 </html>
-
