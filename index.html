@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +38,6 @@
       }
     }
 
-    /* Play button */
     #playBtn {
       margin-top: 20px;
       padding: 10px 20px;
@@ -53,11 +53,11 @@
 <body>
 
   <h1>I love you Esha, forever and always</h1>
-  <button id="playBtn">💖 Play Music</button>
+  <button id="playBtn">💖 Play Our Song</button>
 
   <!-- Background Music -->
   <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    <source src="https://dl.sndup.net/k8tz/Love%20Me%20Like%20You%20Do%20-%20Ellie%20Goulding.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
@@ -87,7 +87,7 @@
 
     playBtn.addEventListener("click", () => {
       music.play();
-      playBtn.style.display = "none"; // hide button after play
+      playBtn.style.display = "none"; // Hide after play
     });
   </script>
 </body>
