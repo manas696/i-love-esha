@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +56,7 @@
 
   <!-- Background Music -->
   <audio id="bgMusic" loop>
-    <source src="https://dl.sndup.net/k8tz/Love%20Me%20Like%20You%20Do%20-%20Ellie%20Goulding.mp3" type="audio/mp3">
+    <source src="https://archive.org/download/love-me-like-you-do-from-fifty-shades-of-grey-128k/love-me-like-you-do-from-fifty-shades-of-grey-128k.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
@@ -81,14 +80,16 @@
 
     setInterval(createHeart, 300);
 
-    // Play Music Button
+    // Music Button
     const music = document.getElementById("bgMusic");
     const playBtn = document.getElementById("playBtn");
 
     playBtn.addEventListener("click", () => {
       music.play();
-      playBtn.style.display = "none"; // Hide after play
+      playBtn.style.display = "none"; // hide button after click
     });
   </script>
+
 </body>
 </html>
+
