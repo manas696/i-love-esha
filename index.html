@@ -1,31 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>I Love You Eshaa ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You Esha ❤️</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      height: 100vh;
-      background: linear-gradient(to right, #2c3e50, #fd746c);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: #ffdde1;
+      background: linear-gradient(to right, #ee9ca7, #ffdde1);
+      font-family: 'Courier New', Courier, monospace;
+      color: #fff;
       overflow: hidden;
-      font-family: 'Courier New', monospace;
-      color: white;
-      text-align: center;
     }
 
-    h1 {
-      font-size: 2.5em;
-      border-right: 0.15em solid white;
+    .message {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 20vh;
       white-space: nowrap;
       overflow: hidden;
+      border-right: 0.15em solid white;
       width: 0;
-      animation: typing 4s steps(40, end) forwards, blink 0.8s infinite;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
     }
 
     @keyframes typing {
@@ -34,68 +31,87 @@
     }
 
     @keyframes blink {
-      0%, 100% { border-color: transparent }
+      from, to { border-color: transparent }
       50% { border-color: white }
     }
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: float 6s linear infinite;
+      color: red;
+      animation: fall 6s linear infinite;
+      font-size: 24px;
     }
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -10px;
-      top: 0;
-    }
-
-    @keyframes float {
-      0% {
-        bottom: 0;
-        opacity: 1;
-        transform: rotate(45deg) translateX(0);
-      }
-      100% {
-        bottom: 100vh;
-        opacity: 0;
-        transform: rotate(45deg) translateX(100px);
-      }
+    @keyframes fall {
+      0% { top: -10%; }
+      100% { top: 100%; }
     }
   </style>
 </head>
-<body>
+<body onclick="createFirework(event)">
 
-  <h1>I Love You Eshaa ❤️</h1>
+  <audio autoplay loop>
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+  </audio>
 
-  <!-- Floating Hearts -->
+  <div class="message" id="typewriter"></div>
+
   <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
+    // Popup
+    alert("Hey Esha 💕\nSomeone very special made this just for you 😊");
+
+    // Typewriter Message
+    const msg = "I love you Esha, forever and always ❤️";
+    let i = 0;
+    function typeWriter() {
+      if (i < msg.length) {
+        document.getElementById("typewriter").innerHTML += msg.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+    typeWriter();
+
+    // Falling Hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+      heart.style.fontSize = (Math.random() * 20 + 10) + "px";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
+    }, 300);
+
+    // Firework on click
+    function createFirework(e) {
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement("div");
+        particle.style.position = "absolute";
+        particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        particle.style.width = particle.style.height = "8px";
+        particle.style.borderRadius = "50%";
+        particle.style.left = `${e.clientX}px`;
+        particle.style.top = `${e.clientY}px`;
+        particle.style.pointerEvents = "none";
+        document.body.appendChild(particle);
+
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.random() * 80;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        particle.animate([
+          { transform: "translate(0, 0)", opacity: 1 },
+          { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+        ], {
+          duration: 800,
+          easing: "ease-out"
+        });
+
+        setTimeout(() => particle.remove(), 800);
+      }
     }
-    setInterval(createHeart, 300);
   </script>
 
 </body>
