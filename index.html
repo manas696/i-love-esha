@@ -1,86 +1,182 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Floating Hearts for Esha 💖</title>
+  <title>Our Love Timeline ❤️</title>
   <style>
     body {
       margin: 0;
-      background: linear-gradient(to bottom, #fcb5c1, #f8a5c2);
-      overflow: hidden;
-      font-family: 'Courier New', monospace;
+      padding: 0;
+      background: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
     }
 
-    .heart {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://i.imgur.com/YM8Y6pu.png');
-      background-size: cover;
-      animation: fall 6s linear infinite;
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+      background: linear-gradient(to right, #ffe3ec, #ffe8f1);
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-60px) rotate(0deg);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
 
     #playBtn {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px 20px;
+      padding: 10px 24px;
       font-size: 1rem;
+      background-color: #ff6f91;
       border: none;
-      border-radius: 12px;
-      background-color: #ff5e78;
+      border-radius: 6px;
       color: white;
       cursor: pointer;
-      animation: pulse 2.5s infinite ease-in-out;
-      z-index: 10;
+      transition: background-color 0.3s ease;
     }
 
-    @keyframes pulse {
-      0% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.1); }
-      100% { transform: translateX(-50%) scale(1); }
+    #playBtn:hover {
+      background-color: #ff5678;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 60px auto;
+      padding: 0 40px;
+      max-width: 800px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      background: #ffb3c1;
+      top: 0;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+
+    .event {
+      position: relative;
+      width: 50%;
+      padding: 20px 30px;
+      box-sizing: border-box;
+    }
+
+    .event.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .event.right {
+      left: 50%;
+    }
+
+    .event::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      width: 16px;
+      height: 16px;
+      background: #ff6f91;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .event.left::before {
+      right: -8px;
+    }
+
+    .event.right::before {
+      left: -8px;
+    }
+
+    .event h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .event p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.9rem;
+      background: #fdf0f5;
+      color: #555;
+    }
+
+    @media screen and (max-width: 768px) {
+      .timeline::before {
+        left: 8px;
+      }
+      .event {
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 15px;
+      }
+      .event.left,
+      .event.right {
+        left: 0;
+        text-align: left;
+      }
+      .event.left::before,
+      .event.right::before {
+        left: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <button id="playBtn">💖 Play Music</button>
+  <header>
+    <h1>Our Love Journey 💖</h1>
+    <button id="playBtn">Play Soft Music</button>
+  </header>
+
+  <div class="timeline">
+    <div class="event left">
+      <h3>🫶 First Talk</h3>
+      <p>That one random chat that changed everything forever.</p>
+    </div>
+    <div class="event right">
+      <h3>😊 First Smile</h3>
+      <p>The moment I saw you smile, I knew something beautiful had begun.</p>
+    </div>
+    <div class="event left">
+      <h3>🌹 The First "I Love You"</h3>
+      <p>It wasn’t just words. It was a promise from the soul.</p>
+    </div>
+    <div class="event right">
+      <h3>🎉 Fun & Fights</h3>
+      <p>Through silly fights and late-night laughs, we only got stronger.</p>
+    </div>
+    <div class="event left">
+      <h3>💌 This Website</h3>
+      <p>I made this just for you, Esha — a small gift from my heart ❤️</p>
+    </div>
+  </div>
+
+  <footer>
+    Made with 💻 by Manas · For Esha 💞
+  </footer>
 
   <audio id="bgMusic" loop>
-    <source src="https://archive.org/download/romantic_guitar_track/romantic_guitar.mp3" type="audio/mp3">
+    <source src="https://archive.org/download/relaxing-soft-piano-music/Piano_Moment.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
   <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
-
-    setInterval(createHeart, 200);
-
     const music = document.getElementById("bgMusic");
-    document.getElementById("playBtn").addEventListener("click", () => {
+    const playBtn = document.getElementById("playBtn");
+
+    playBtn.addEventListener("click", () => {
       music.play();
-      document.getElementById("playBtn").style.display = "none";
+      playBtn.style.display = "none";
     });
   </script>
 
