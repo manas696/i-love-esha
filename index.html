@@ -36,16 +36,29 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
+
+    /* Play button */
+    #playBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff5e78;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
   <h1>I love you Esha, forever and always</h1>
+  <button id="playBtn">💖 Play Music</button>
 
   <!-- Background Music -->
-  <audio autoplay loop>
+  <audio id="bgMusic" loop>
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-    Your browser does not support the audio tag.
+    Your browser does not support the audio element.
   </audio>
 
   <script>
@@ -53,7 +66,7 @@
     window.onload = function () {
       setTimeout(() => {
         alert("Will you always be mine, Esha? 💍");
-      }, 1500); // Delay popup by 1.5 seconds
+      }, 1000);
     };
 
     // Falling Hearts
@@ -67,6 +80,15 @@
     }
 
     setInterval(createHeart, 300);
+
+    // Play Music Button
+    const music = document.getElementById("bgMusic");
+    const playBtn = document.getElementById("playBtn");
+
+    playBtn.addEventListener("click", () => {
+      music.play();
+      playBtn.style.display = "none"; // hide button after play
+    });
   </script>
 </body>
 </html>
