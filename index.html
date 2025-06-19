@@ -4,27 +4,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>I Love You Esha ❤️</title>
+  <title>Floating Hearts for Esha 💖</title>
   <style>
     body {
       margin: 0;
       background: linear-gradient(to bottom, #fcb5c1, #f8a5c2);
       overflow: hidden;
       font-family: 'Courier New', monospace;
-      color: white;
-      text-align: center;
-    }
-
-    .greeting {
-      opacity: 0;
-      margin-top: 20vh;
-      font-size: 2.5rem;
-      animation: fadeIn 3s forwards;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
 
     .heart {
@@ -33,37 +19,46 @@
       height: 30px;
       background-image: url('https://i.imgur.com/YM8Y6pu.png');
       background-size: cover;
-      animation: fall 6s linear infinite ease-in;
+      animation: fall 6s linear infinite;
     }
 
     @keyframes fall {
-      0% { transform: translateY(-50px) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
-
-    @keyframes float {
-      0% { transform: scale(0.9); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(0.9); }
+      0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
 
     #playBtn {
-      margin-top: 20px;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       padding: 10px 20px;
       font-size: 1rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background-color: #ff5e78;
       color: white;
       cursor: pointer;
-      animation: float 3s ease-in-out infinite;
+      animation: pulse 2.5s infinite ease-in-out;
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+      100% { transform: translateX(-50%) scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <div class="greeting">I love you Esha, forever and always ❤️</div>
-  <button id="playBtn">💖 Play Our Song</button>
+  <button id="playBtn">💖 Play Music</button>
 
   <audio id="bgMusic" loop>
     <source src="https://archive.org/download/romantic_guitar_track/romantic_guitar.mp3" type="audio/mp3">
@@ -71,23 +66,17 @@
   </audio>
 
   <script>
-    // Greeting animation triggered on load
-    window.onload = function() {
-      document.querySelector('.greeting').style.opacity = 1;
-    };
-
-    // Falling hearts
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 7000);
     }
-    setInterval(createHeart, 400);
 
-    // Music button
+    setInterval(createHeart, 200);
+
     const music = document.getElementById("bgMusic");
     document.getElementById("playBtn").addEventListener("click", () => {
       music.play();
